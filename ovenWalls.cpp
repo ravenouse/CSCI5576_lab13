@@ -298,7 +298,7 @@ int main(int argc, char *argv[])
 	  int inside;
 #pragma acc enter data copyin(   coordB[ 0:nFieldB+1 ][0:3] , faceB[ 0:nFacesB+1][0:5] ,  normalB[ 0:nFacesB+1][0:3] ,blocked [0:nFacesB+1], Ray[0:3], Ray0[0:3])
 #pragma acc parallel loop private(Q0[0:3],Q1[0:3],Q2[0:3],Q3[0:3],p0Ray0[0:3],xyzInt[0:3],normal[0:3],A[0:3],B[0:3],C[0:3],P[0:3],vAB[0:3],vCA[0:3],vAP[0:3],cB[0:3],cC[0:3],numerator,dotProduct,dotProduct2,inside) present( coordB[ 0:nFieldB+1 ][0:3] , faceB[ 0:nFacesB+1][0:5] , normalB[ 0:nFacesB+1][0:3] , blocked[0:nFacesB+1], Ray[0:3], Ray0[0:3])
-	  for ( int BID = 1 ; BID <= nFacesB ; ++BID )
+    for ( int BID = 1 ; BID <= nFacesB ; ++BID )
 	    {
 	      // Vertices of potential blocker
       
@@ -328,7 +328,7 @@ int main(int argc, char *argv[])
 	      kLOOP    {      A[k] = Q3[k] ;  B[k] = Q2[k] ;   C[k] = Q0[k] ;     }  _IC_MACRO_  if ( dotProduct2 >= 0. ) inside += 1;
 	      if (inside==4) blocked[BID] += 1;
 	    }
-#pragma acc exit data copyout(blocked [0:nFacesB+1], Ray[0:3], Ray0[0:3] )
+#pragma acc exit data copyout(blocked [0:nFacesB+1])
 
 	  int sumBlocked = 0;
 	  for ( int f = 1 ; f <= nFacesB ; ++f ) sumBlocked += blocked[f];
