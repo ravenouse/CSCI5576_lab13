@@ -1,0 +1,21 @@
+grep GPU  tty.out > gpu1
+grep CPU  tty.out > cpu1
+
+sed s/CPU//g cpu1 > cpu
+sed s/GPU//g gpu1 > gpu
+
+echo
+echo -----------------------------------
+echo gpu-cpu diff
+echo -----------------------------------
+echo
+
+echo Number of lines different...
+
+diff gpu cpu | wc -l
+
+read -p "Press Enter to see details of diff..."
+
+diff gpu cpu
+
+

@@ -1,0 +1,32 @@
+
+
+clear
+
+echo
+echo -----------------------------------
+echo CPU regression test:
+echo -----------------------------------
+echo
+
+echo Number of lines different...
+
+diff hit.plt hit.plt_std | wc -l
+
+read -p "Press Enter to see details of diff..."
+
+diff hit.plt hit.plt_std
+
+
+echo
+echo -----------------------------------
+echo CPU-GPU comparison:
+echo -----------------------------------
+echo
+
+echo Number of lines different...
+
+diff hit.txt hit_gpu.txt | wc -l
+
+read -p "Press Enter to see details of diff..."
+
+diff hit.txt hit_gpu.txt
